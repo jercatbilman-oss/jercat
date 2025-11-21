@@ -130,11 +130,59 @@
             margin: 20px 0;
         }
 
+        .tier-starter { background: #8B7355; }
         .tier-bronze { background: #CD7F32; }
         .tier-silver { background: #C0C0C0; color: #000; }
         .tier-gold { background: #FFD700; color: #000; }
+        .tier-platinum { background: linear-gradient(45deg, #E5E4E2, #BCC6CC); color: #000; }
         .tier-diamond { background: linear-gradient(45deg, #00D4FF, #0099CC); }
+        .tier-legend { background: linear-gradient(45deg, #FF0080, #FF8C00, #FFD700); }
         .tier-none { background: rgba(255, 0, 0, 0.3); }
+
+        .tier-info-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .tier-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tier-level {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .tier-level.active {
+            border-color: #FFD700;
+            background: rgba(255, 215, 0, 0.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .tier-level-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .tier-level-name {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .tier-level-amount {
+            font-size: 12px;
+            opacity: 0.7;
+        }
 
         .bots-section {
             display: none;
@@ -372,6 +420,9 @@
             .bot-grid {
                 grid-template-columns: 1fr;
             }
+            .tier-levels {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
         }
     </style>
 </head>
@@ -385,7 +436,7 @@
             </div>
             
             <h1>🐱 JERCAT BOT PLATFORM</h1>
-            <p class="subtitle">Bots de trading automatisés réservés aux holders</p>
+            <p class="subtitle">Bots de trading automatisés réservés aux holders JERCAT</p>
             
             <div style="margin-top: 25px; padding: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 15px; backdrop-filter: blur(10px);">
                 <p style="font-size: 14px; opacity: 0.8; margin-bottom: 10px;">Contrat JERCAT (BSC):</p>
@@ -413,8 +464,8 @@
 
         <div class="card">
             <div id="connectSection" class="connect-section">
-                <h2 style="margin-bottom: 20px;">Connexion</h2>
-                <p style="margin-bottom: 20px; opacity: 0.8;">Connecte ton wallet MetaMask pour accéder aux bots</p>
+                <h2 style="margin-bottom: 20px;">Connexion Wallet</h2>
+                <p style="margin-bottom: 20px; opacity: 0.8;">Connecte ton wallet MetaMask pour vérifier ta balance JERCAT et accéder aux bots</p>
                 <button id="connectBtn" class="connect-btn">
                     🦊 Connecter MetaMask
                 </button>
@@ -422,7 +473,7 @@
 
             <div id="loading" class="loading">
                 <div class="spinner"></div>
-                <p style="margin-top: 15px;">Vérification en cours...</p>
+                <p style="margin-top: 15px;">Vérification de ta balance JERCAT...</p>
             </div>
 
             <div id="walletInfo" class="wallet-info">
@@ -445,6 +496,64 @@
                 <div>
                     <span id="tierBadge" class="tier-badge tier-none">Tier: NONE</span>
                 </div>
+
+                <div class="tier-info-card">
+                    <h3 style="text-align: center; margin-bottom: 15px; color: #FFD700;">🎖️ Niveaux de Holders JERCAT</h3>
+                    <p style="text-align: center; font-size: 13px; opacity: 0.7; margin-bottom: 20px;">
+                        Plus tu détiens de tokens JERCAT, plus tu débloqueras de bots puissants !
+                    </p>
+                    
+                    <div class="tier-levels">
+                        <div class="tier-level" id="level-starter">
+                            <div class="tier-level-icon">🌱</div>
+                            <div class="tier-level-name">STARTER</div>
+                            <div class="tier-level-amount">100+ JERCAT</div>
+                        </div>
+                        
+                        <div class="tier-level" id="level-bronze">
+                            <div class="tier-level-icon">🥉</div>
+                            <div class="tier-level-name">BRONZE</div>
+                            <div class="tier-level-amount">500+ JERCAT</div>
+                        </div>
+                        
+                        <div class="tier-level" id="level-silver">
+                            <div class="tier-level-icon">🥈</div>
+                            <div class="tier-level-name">SILVER</div>
+                            <div class="tier-level-amount">1,000+ JERCAT</div>
+                        </div>
+                        
+                        <div class="tier-level" id="level-gold">
+                            <div class="tier-level-icon">🥇</div>
+                            <div class="tier-level-name">GOLD</div>
+                            <div class="tier-level-amount">5,000+ JERCAT</div>
+                        </div>
+                        
+                        <div class="tier-level" id="level-platinum">
+                            <div class="tier-level-icon">💿</div>
+                            <div class="tier-level-name">PLATINUM</div>
+                            <div class="tier-level-amount">10,000+ JERCAT</div>
+                        </div>
+                        
+                        <div class="tier-level" id="level-diamond">
+                            <div class="tier-level-icon">💎</div>
+                            <div class="tier-level-name">DIAMOND</div>
+                            <div class="tier-level-amount">25,000+ JERCAT</div>
+                        </div>
+                        
+                        <div class="tier-level" id="level-legend">
+                            <div class="tier-level-icon">👑</div>
+                            <div class="tier-level-name">LEGEND</div>
+                            <div class="tier-level-amount">50,000+ JERCAT</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 10px; border: 1px solid rgba(255, 215, 0, 0.3);">
+                        <p style="font-size: 13px; text-align: center;">
+                            <strong>📊 Ton niveau actuel:</strong> <span id="currentTierText" style="color: #FFD700;">-</span><br>
+                            <span id="nextTierText" style="opacity: 0.8; font-size: 12px; margin-top: 5px; display: inline-block;">-</span>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -452,8 +561,9 @@
 
         <div id="accessDenied" class="access-denied card">
             <h2>🚫 Accès Refusé</h2>
-            <p style="font-size: 18px;">Tu dois posséder au moins <strong>100 JERCAT</strong> pour utiliser les bots de trading.</p>
+            <p style="font-size: 18px;">Tu dois être holder de <strong>JERCAT</strong> pour utiliser les bots de trading.</p>
             <p style="margin-top: 20px; font-size: 16px;">Balance actuelle: <strong><span id="deniedBalance">0</span> JERCAT</strong></p>
+            <p style="margin-top: 10px; font-size: 14px; opacity: 0.8;">Minimum requis: <strong>100 JERCAT</strong></p>
             
             <div style="display: flex; gap: 15px; justify-content: center; margin-top: 25px; flex-wrap: wrap;">
                 <a href="https://dex-jercat.vercel.app/" 
@@ -483,7 +593,7 @@
                         <div class="bot-icon">📈</div>
                         <h3>DCA Bot Basique</h3>
                         <p>Achat/vente automatique avec stratégie DCA. Idéal pour débuter dans le trading automatisé.</p>
-                        <div class="bot-requirement">✅ Minimum: 100 JERCAT</div>
+                        <div class="bot-requirement">🌱 Niveau STARTER: 100 JERCAT</div>
                         <div class="bot-status" id="status-dca-basic"></div>
                         <button class="start-bot-btn" onclick="startBot('dca-basic')">
                             🚀 Lancer le bot
@@ -497,7 +607,7 @@
                         <div class="bot-icon">⚡</div>
                         <h3>Arbitrage Simple</h3>
                         <p>Arbitrage entre PancakeSwap et Biswap. Profite des écarts de prix entre 2 DEX.</p>
-                        <div class="bot-requirement">✅ Minimum: 500 JERCAT</div>
+                        <div class="bot-requirement">🥉 Niveau BRONZE: 500 JERCAT</div>
                         <div class="bot-status" id="status-arbitrage-simple"></div>
                         <button class="start-bot-btn" onclick="startBot('arbitrage-simple')">
                             🚀 Lancer le bot
@@ -511,7 +621,7 @@
                         <div class="bot-icon">🔥</div>
                         <h3>Arbitrage Multi-DEX</h3>
                         <p>19 routes d'arbitrage sur PancakeSwap, Biswap, ApeSwap et plus. Maximum de profits!</p>
-                        <div class="bot-requirement">✅ Minimum: 1,000 JERCAT</div>
+                        <div class="bot-requirement">🥈 Niveau SILVER: 1,000 JERCAT</div>
                         <div class="bot-status" id="status-arbitrage-multi"></div>
                         <button class="start-bot-btn" onclick="startBot('arbitrage-multi')">
                             🚀 Lancer le bot
@@ -525,7 +635,7 @@
                         <div class="bot-icon">🛡️</div>
                         <h3>Anti-Dump System</h3>
                         <p>Détection automatique des dumps et achat après baisse importante. Protège tes investissements.</p>
-                        <div class="bot-requirement">✅ Minimum: 1,000 JERCAT</div>
+                        <div class="bot-requirement">🥈 Niveau SILVER: 1,000 JERCAT</div>
                         <div class="bot-status" id="status-anti-dump"></div>
                         <button class="start-bot-btn" onclick="startBot('anti-dump')">
                             🚀 Lancer le bot
@@ -539,7 +649,7 @@
                         <div class="bot-icon">📊</div>
                         <h3>Bot Analyse Avancée</h3>
                         <p>Trading avec RSI, MACD, Bollinger Bands. Stratégies techniques professionnelles.</p>
-                        <div class="bot-requirement">✅ Minimum: 5,000 JERCAT</div>
+                        <div class="bot-requirement">🥇 Niveau GOLD: 5,000 JERCAT</div>
                         <div class="bot-status" id="status-technical"></div>
                         <button class="start-bot-btn" onclick="startBot('technical')">
                             🚀 Lancer le bot
@@ -550,15 +660,43 @@
                     </div>
 
                     <div class="bot-card" data-min-balance="10000" data-bot-id="premium">
-                        <div class="bot-icon">💎</div>
+                        <div class="bot-icon">💿</div>
                         <h3>Bot Premium</h3>
-                        <p>Tous les bots combinés + signaux premium + priorité d'exécution. VIP access!</p>
-                        <div class="bot-requirement">✅ Minimum: 10,000 JERCAT</div>
+                        <p>Tous les bots combinés + signaux premium + priorité d'exécution. Accès VIP complet!</p>
+                        <div class="bot-requirement">💿 Niveau PLATINUM: 10,000 JERCAT</div>
                         <div class="bot-status" id="status-premium"></div>
                         <button class="start-bot-btn" onclick="startBot('premium')">
                             🚀 Lancer le bot
                         </button>
                         <button class="stop-bot-btn" id="stop-premium" onclick="stopBot('premium')">
+                            ⏹️ Arrêter le bot
+                        </button>
+                    </div>
+
+                    <div class="bot-card" data-min-balance="25000" data-bot-id="diamond-bot">
+                        <div class="bot-icon">💎</div>
+                        <h3>Diamond Bot Elite</h3>
+                        <p>Flash loans + MEV + Sniping automatique. Les stratégies les plus avancées du marché.</p>
+                        <div class="bot-requirement">💎 Niveau DIAMOND: 25,000 JERCAT</div>
+                        <div class="bot-status" id="status-diamond-bot"></div>
+                        <button class="start-bot-btn" onclick="startBot('diamond-bot')">
+                            🚀 Lancer le bot
+                        </button>
+                        <button class="stop-bot-btn" id="stop-diamond-bot" onclick="stopBot('diamond-bot')">
+                            ⏹️ Arrêter le bot
+                        </button>
+                    </div>
+
+                    <div class="bot-card" data-min-balance="50000" data-bot-id="legend-bot">
+                        <div class="bot-icon">👑</div>
+                        <h3>Legend Bot Ultimate</h3>
+                        <p>Tous les bots + IA prédictive + Accès API premium + Support VIP 24/7. Le summum de l'automatisation!</p>
+                        <div class="bot-requirement">👑 Niveau LEGEND: 50,000 JERCAT</div>
+                        <div class="bot-status" id="status-legend-bot"></div>
+                        <button class="start-bot-btn" onclick="startBot('legend-bot')">
+                            🚀 Lancer le bot
+                        </button>
+                        <button class="stop-bot-btn" id="stop-legend-bot" onclick="stopBot('legend-bot')">
                             ⏹️ Arrêter le bot
                         </button>
                     </div>
@@ -748,8 +886,24 @@
                 // Tier
                 const tier = getTier(jercatBalance);
                 const tierBadge = document.getElementById('tierBadge');
-                tierBadge.textContent = `Tier: ${tier.toUpperCase()}`;
+                tierBadge.textContent = `Tier: ${getTierName(tier)}`;
                 tierBadge.className = `tier-badge tier-${tier}`;
+
+                // Mettre à jour le texte du tier actuel
+                document.getElementById('currentTierText').textContent = getTierName(tier);
+
+                // Mettre à jour les niveaux visuels
+                updateTierLevels(jercatBalance);
+
+                // Info sur le prochain niveau
+                const nextTier = getNextTierInfo(jercatBalance);
+                const nextTierText = document.getElementById('nextTierText');
+                if (nextTier) {
+                    const needed = nextTier.required - jercatBalance;
+                    nextTierText.textContent = `🎯 Plus que ${needed.toFixed(0)} JERCAT pour atteindre ${nextTier.name}`;
+                } else {
+                    nextTierText.textContent = '🎉 Tu as atteint le niveau maximum ! Tu es une LÉGENDE !';
+                }
 
                 // Afficher wallet info
                 walletInfo.classList.add('active');
@@ -765,11 +919,65 @@
 
         // Déterminer le tier
         function getTier(balance) {
-            if (balance >= 10000) return 'diamond';
+            if (balance >= 50000) return 'legend';
+            if (balance >= 25000) return 'diamond';
+            if (balance >= 10000) return 'platinum';
             if (balance >= 5000) return 'gold';
             if (balance >= 1000) return 'silver';
-            if (balance >= 100) return 'bronze';
+            if (balance >= 500) return 'bronze';
+            if (balance >= 100) return 'starter';
             return 'none';
+        }
+
+        // Obtenir le nom du tier en français
+        function getTierName(tier) {
+            const names = {
+                'legend': 'LEGEND 👑',
+                'diamond': 'DIAMOND 💎',
+                'platinum': 'PLATINUM 💿',
+                'gold': 'GOLD 🥇',
+                'silver': 'SILVER 🥈',
+                'bronze': 'BRONZE 🥉',
+                'starter': 'STARTER 🌱',
+                'none': 'AUCUN ❌'
+            };
+            return names[tier] || 'AUCUN';
+        }
+
+        // Obtenir le prochain tier
+        function getNextTierInfo(balance) {
+            if (balance >= 50000) return null;
+            if (balance >= 25000) return { name: 'LEGEND 👑', required: 50000 };
+            if (balance >= 10000) return { name: 'DIAMOND 💎', required: 25000 };
+            if (balance >= 5000) return { name: 'PLATINUM 💿', required: 10000 };
+            if (balance >= 1000) return { name: 'GOLD 🥇', required: 5000 };
+            if (balance >= 500) return { name: 'SILVER 🥈', required: 1000 };
+            if (balance >= 100) return { name: 'BRONZE 🥉', required: 500 };
+            return { name: 'STARTER 🌱', required: 100 };
+        }
+
+        // Mettre à jour l'affichage visuel des niveaux
+        function updateTierLevels(balance) {
+            const levels = [
+                { id: 'starter', min: 100 },
+                { id: 'bronze', min: 500 },
+                { id: 'silver', min: 1000 },
+                { id: 'gold', min: 5000 },
+                { id: 'platinum', min: 10000 },
+                { id: 'diamond', min: 25000 },
+                { id: 'legend', min: 50000 }
+            ];
+
+            levels.forEach(level => {
+                const element = document.getElementById(`level-${level.id}`);
+                if (element) {
+                    if (balance >= level.min) {
+                        element.classList.add('active');
+                    } else {
+                        element.classList.remove('active');
+                    }
+                }
+            });
         }
 
         // Vérifier l'accès
@@ -818,7 +1026,7 @@
             const minBalance = parseInt(card.dataset.minBalance);
 
             if (jercatBalance < minBalance) {
-                showMessage(`❌ Balance insuffisant. Requis: ${minBalance} JERCAT`, 'error');
+                showMessage(`❌ Balance insuffisante. Requis: ${minBalance} JERCAT`, 'error');
                 return;
             }
 
